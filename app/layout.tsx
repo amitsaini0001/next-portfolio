@@ -18,7 +18,7 @@ const specialElite = Special({
 });
 
 export const metadata: Metadata = {
-  title: "🤓 Amit Saini",
+  title: "Amit Saini",
   description: "Amit Saini Portfolio",
 };
 
