@@ -135,8 +135,8 @@ export default function Home() {
             <div className="text-xs md:text-md">
               <p className="font-extrabold">A little about you.</p>
               <div>
-                <div className="border border-[color:var(--border-color)] p-1 md:p-2 font-semibold">
-                  <p>
+                <div className="border border-[color:var(--border-color)] p-1 md:p-2 font-semibold truncate">
+                  <p className="truncate">
                     IP:{" "}
                     {state === "Loading"
                       ? " Loading.."
@@ -144,7 +144,7 @@ export default function Home() {
                       ? `${ipdata.ip}`
                       : "Not available"}
                   </p>
-                  <p>
+                  <p className="truncate">
                     City:{" "}
                     {state === "Loading"
                       ? " Loading.."
@@ -152,7 +152,7 @@ export default function Home() {
                       ? `${ipdata.city}`
                       : "Not available"}
                   </p>
-                  <div className="flex items-center justify-start gap-1">
+                  <div className="flex items-center justify-start gap-1 truncate">
                     <p>
                       Country:{" "}
                       {state === "Loading"
@@ -167,15 +167,31 @@ export default function Home() {
                       ""
                     )}
                   </div>
-                  <p>
-                    Timezone:{" "}
+                  <p className="truncate">
+                    Lat:{" "}
                     {state === "Loading"
                       ? " Loading.."
-                      : state === "Done" && ipdata.timezone
-                      ? `${ipdata.timezone}`
+                      : state === "Done" && ipdata.latitude
+                      ? `${ipdata.latitude}`
                       : "Not available"}
                   </p>
-                  <p>
+                  <p className="truncate">
+                    Long:{" "}
+                    {state === "Loading"
+                      ? " Loading.."
+                      : state === "Done" && ipdata.longitude
+                      ? `${ipdata.longitude}`
+                      : "Not available"}
+                  </p>
+                  <p className="truncate">
+                    ASN:{" "}
+                    {state === "Loading"
+                      ? " Loading.."
+                      : state === "Done" && ipdata.asn
+                      ? `${ipdata.asn}`
+                      : "Not available"}
+                  </p>
+                  <p className="truncate">
                     Provider:{" "}
                     {state === "Loading"
                       ? " Loading.."
