@@ -82,7 +82,7 @@ export default function Home() {
                 </svg>
                 </a>
 
-                <a>
+                <a href="/amit_saini_resume.pdf" download={"amit_saini_resume.pdf"}>
                 <svg
                 id="cv-download"
                   xmlns="http://www.w3.org/2000/svg"
