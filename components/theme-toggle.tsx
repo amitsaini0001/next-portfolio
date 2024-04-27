@@ -1,16 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, SunMoon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
@@ -29,8 +23,12 @@ export function ThemeToggle() {
 
   return (
     <div className="-rotate-90 flex items-start justify-start font-elite hover:cursor-pointer"
-    onClick={() =>
-        theme === "dark" ? setTheme("light") : setTheme("dark")
+    onClick={() =>{
+      
+      if(theme=== "light") setTheme("dark");
+      if(theme=== "dark") setTheme("system");
+      if(theme=== "system") setTheme("light");
+    }
       }
     >
       <Button
@@ -41,10 +39,14 @@ export function ThemeToggle() {
         
       >
         <div>
-          {theme === "dark" ? (
+          {theme === "light" && (
             <Sun className="w-4 h-4" />
-          ) : (
+          )}
+          {theme === "dark" && (
             <Moon className="w-4 h-4" />
+          )}
+          {theme === "system" && (
+            <SunMoon className="w-4 h-4" />
           )}
         </div>
       </Button>

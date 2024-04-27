@@ -21,8 +21,8 @@ export default function VantaBackground({children}:any){
                 gyroControls: true,
                 minHeight: 200.00,
                 minWidth: 200.00,
-                skyColor: theme==="dark" ? "#000000" : "#f3f6f4",
-                cloudColor: theme==="dark" ? "#b1c4e1" : "#d3dceb",
+                skyColor: theme!=="light" ? "#000000" : "#f3f6f4",
+                cloudColor: theme!=="light" ? "#b1c4e1" : "#d3dceb",
                 sunColor: '#f7971e',
                 sunGlareColor: '#fc6330',
                 sunlightColor: '#ff9d3c'
