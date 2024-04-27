@@ -20,7 +20,7 @@ async function getIpAdress() {
 
 export default function Home() {
   const { theme } = useTheme();
-  const [nav, setNav] = useState("contact");
+  const [nav, setNav] = useState("exp");
   const [ipdata, setIP] = useState<any>();
   const [state, setState] = useState("Loading");
   const year = new Date().getFullYear();
