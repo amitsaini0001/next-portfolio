@@ -42,6 +42,9 @@
     --border-color: black;
     transition: all 0.5s ease-in-out;
 
+    --sky-color:#f3f6f4;
+    --cloud-color:#d3dceb;
+
     --delay: 0s;
   }
 
@@ -82,6 +85,8 @@
       rgba(255, 255, 255, 0.8)
     );
     transition: all 0.5s ease-in-out;
+    --sky-color:#000000;
+    --cloud-color:#b1c4e1;
   }
 
 
