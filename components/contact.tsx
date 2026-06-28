@@ -1,35 +1,76 @@
-import { cn } from "@/lib/utils";
+"use client";
 
+import { Prompt } from "@/components/terminal/prompt";
+
+type Channel = {
+  label: string;
+  command: string;
+  href: string;
+  display: string;
+};
+
+const channels: Channel[] = [
+  {
+    label: "email",
+    command: "./send-mail.sh",
+    href: "mailto:amit231564@gmail.com",
+    display: "amit231564@gmail.com",
+  },
+  {
+    label: "phone",
+    command: "./call.sh",
+    href: "tel:+61497845880",
+    display: "+61 497 845 880",
+  },
+  {
+    label: "github",
+    command: "git remote -v",
+    href: "https://github.com/amitsaini0001",
+    display: "github.com/amitsaini0001",
+  },
+  {
+    label: "linkedin",
+    command: "curl linkedin",
+    href: "https://www.linkedin.com/in/meisamit",
+    display: "linkedin.com/in/meisamit",
+  },
+  {
+    label: "resume",
+    command: "wget resume.pdf",
+    href: "/amit-resume-26.pdf",
+    display: "amit_saini_resume.pdf",
+  },
+];
 
 export default function Contact() {
-
   return (
-    <div className="flex flex-col gap-5 md:gap-12 items-end hover:cursor-image pr-0 md:pr-5 transition-opacity ease-in-out cursor-image">
+    <div className="space-y-4">
+      <Prompt command="cat contact.txt" />
+      <div className="text-[10px] md:text-xs text-terminal-dim leading-relaxed">
+        # principal full stack engineer · melbourne, au<br />
+        # available for: tech lead · architecture · ai products · contract / full-time
+      </div>
 
-        <div
-          className={"mt-72 flex flex-col items-end text-right mr-2 md:mr-0 md:text-left md:flex-row md:items-end md:justify-end gap-2 overflow-x-visible animate-slideIn"}
-        >
-          <p className="text-xs font-semibold">bneamit@gmail.com</p>
-          <a className="text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-normal md:font-thin transition-all 2s ease-in-out hover:opacity-50 hover:scale-105"
-          href={'mailto:bneamit@gmail.com'}
- 
+      <div className="space-y-3 pt-2">
+        {channels.map((c) => (
+          <a
+            key={c.label}
+            href={c.href}
+            target={c.href.startsWith("http") ? "_blank" : undefined}
+            rel="noreferrer"
+            download={c.label === "resume" ? "amit_saini_resume.pdf" : undefined}
+            className="group block border-l-2 border-terminal-green/30 pl-3 md:pl-4 hover:border-terminal-green hover:bg-terminal-green/5 transition-colors"
           >
-            Send Me Hi
+            <div className="text-[10px] md:text-xs text-terminal-dim">
+              <span className="text-terminal-green/80">[{c.label}]</span> <span className="text-foreground">{c.command}</span>
+            </div>
+            <div className="mt-1 text-sm md:text-base text-terminal-green term-glow group-hover:underline">
+              {c.display}
+            </div>
           </a>
-        </div>
-
-        <div
-          className={"flex flex-col items-end text-right mr-2 md:mr-0 md:text-left md:flex-row md:items-end md:justify-end gap-2 overflow-x-visible animate-slideIn"}
-        >
-          <p className="text-xs font-semibold">(+61) 0497845880</p>
-          <a className="text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-normal md:font-thin transition-all 2s ease-in-out hover:opacity-50 hover:scale-105"
-          href={'tel:+61497845880'}
-
-          >
-            Hear My Voice
-          </a>
-        </div>
-
+        ))}
+      </div>
+      <Prompt className="pt-2" command="" />
     </div>
   );
 }

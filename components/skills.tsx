@@ -1,91 +1,201 @@
-import { cn } from "@/lib/utils";
+"use client";
 
-type Skl = {
+import { Prompt } from "@/components/terminal/prompt";
 
-    name: string;
+type Group = { name: string; items: string[] };
 
-  };
-  
-  export default function Skills() {
-    const skl: Skl[] = [
-      {
-        name: "React",
-      },
-      {
-        name: "React Native",
-      },
-      {
-        name: "Typescript",
-      },
-      {
-        name: "Javascript",
-      },
-      {
-        name: "AWS",
-      },
-      {
-        name: "Google Cloud",
-      },
-      {
-        name: "NodeJS",
-      },
-      {
-        name: "Rest",
-      },
-      {
-        name: "GraphQL",
-      },
-      {
-        name: "C#/.Net",
-      },
-      {
-        name: "NextJS",
-      },
-      {
-        name: "Flutter",
-      },
-      {
-        name: "Single SPA",
-      },
-      {
-        name: "Antora",
-      },
-      {
-        name: "Tensor",
-      },
-      {
-        name: "Python",
-      },
-      {
-        name: "MySQL",
-      },
-      {
-        name: "SQL",
-      },
-      {
-        name: "NoSQL",
-      },
-      {
-        name: "Agile",
-      },
-      {
-        name: "Scrum",
-      },
-        
-    ];
-    return (
-        <div className="flex flex-col gap-5 md:gap-12 items-end hover:cursor-pointer pr-0 md:pr-5 transition-opacity ease-in-out">
-        {skl.map((item, index) => (
-          <div
-            className={cn(`${index===0 ? 'mt-60':''}`,"flex flex-col items-end mr-2 md:mr-0 text-right md:text-left md:flex-row md:items-end md:justify-end gap-2 overflow-x-visible animate-slideIn")}
-            key={`skill-${index}`}
-          >
-            <p className="text-xl md:text-3xl lg:text-5xl xl:text-6xl font-normal md:font-thin transition-all 2s ease-in-out hover:opacity-50 hover:scale-105">
-              {item.name}
-            </p>
+const groups: Group[] = [
+  {
+    name: "frontend",
+    items: [
+      "React",
+      "Next.js",
+      "Gatsby",
+      "Vue",
+      "Svelte",
+      "Preact",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind",
+      "Styled Components",
+      "Storybook",
+      "Micro-frontends",
+      "Design Systems",
+      "Accessibility (a11y)",
+      "SEO",
+      "Web Performance",
+      "Three.js",
+    ],
+  },
+  {
+    name: "backend",
+    items: [
+      "Node.js",
+      ".NET",
+      "C#",
+      "C++",
+      "Python",
+      "Java",
+      "Spring Boot",
+      "PHP",
+      "REST APIs",
+      "GraphQL",
+      "Serverless",
+      "Event-Driven",
+      "API Design",
+      "Microservices",
+      "WebSockets",
+    ],
+  },
+  {
+    name: "data",
+    items: [
+      "PostgreSQL",
+      "MySQL",
+      "MSSQL",
+      "MongoDB",
+      "SQLite",
+      "Redis",
+      "Firebase",
+      "NeonDB",
+      "Turso",
+      "DynamoDB",
+      "Prisma",
+    ],
+  },
+  {
+    name: "mobile",
+    items: [
+      "React Native",
+      "Expo",
+      "SwiftUI",
+      "SwiftData",
+      "Kotlin",
+      "Android",
+      "StoreKit 2",
+      "RevenueCat",
+      "CloudKit",
+      "PDFKit",
+      "Push Notifications",
+    ],
+  },
+  {
+    name: "cloud_devops",
+    items: [
+      "AWS",
+      "GCP",
+      "Vercel",
+      "Render",
+      "Lambda",
+      "S3",
+      "CloudFront",
+      "Route 53",
+      "AWS CDK",
+      "CloudFormation",
+      "Terraform",
+      "SST",
+      "Docker",
+      "Nginx",
+      "Ansible",
+      "Jenkins",
+      "Azure DevOps",
+      "GitHub Actions",
+      "CI/CD",
+      "Observability",
+      "Datadog",
+      "New Relic",
+      "Dynatrace",
+    ],
+  },
+  {
+    name: "ai_ml",
+    items: [
+      "OpenAI",
+      "LangChain",
+      "ComfyUI",
+      "Custom LoRA Training",
+      "Image/Video Generation",
+      "Ostris",
+      "TensorFlow",
+      "OpenCV",
+      "OCR Pipelines",
+      "RAG",
+      "Embeddings",
+      "Prompt Engineering",
+      "AI Agents",
+    ],
+  },
+  {
+    name: "web3",
+    items: ["Web3.js", "Smart Contract UX", "Decentralised Apps", "Glue", "Vana"],
+  },
+  {
+    name: "integrations",
+    items: [
+      "Contentful",
+      "Strapi",
+      "Notion API",
+      "Confluence API",
+      "Figma API",
+      "Messenger",
+      "WhatsApp",
+      "Telegram",
+      "Stripe",
+    ],
+  },
+  {
+    name: "product",
+    items: [
+      "SaaS",
+      "Consumer Apps",
+      "Billing & Subscriptions",
+      "Analytics",
+      "Growth",
+      "Go-to-Market",
+      "A/B Testing",
+    ],
+  },
+  {
+    name: "leadership",
+    items: [
+      "System Design",
+      "Architecture",
+      "Tech Strategy",
+      "Roadmapping",
+      "Mentoring",
+      "Code Review",
+      "Engineering Standards",
+      "Stakeholder Mgmt",
+      "Hiring",
+      "Agile / Scrum",
+    ],
+  },
+];
+
+export default function Skills() {
+  return (
+    <div className="space-y-4">
+      <Prompt command="ls -la ./skills/" />
+      <div className="space-y-3">
+        {groups.map((g) => (
+          <div key={g.name} className="space-y-1">
+            <div className="text-[10px] md:text-xs text-terminal-dim">
+              drwxr-xr-x amit amit{"  "}<span className="text-terminal-green">{g.name}/</span>
+            </div>
+            <div className="flex flex-wrap gap-1.5 pl-2">
+              {g.items.map((item) => (
+                <span
+                  key={item}
+                  className="text-[10px] md:text-xs px-2 py-0.5 border border-terminal-green/40 text-foreground hover:bg-terminal-green hover:text-background transition-colors cursor-default"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         ))}
       </div>
-    );
-  }
-  
+      <Prompt className="pt-2" command="" />
+    </div>
+  );
+}
